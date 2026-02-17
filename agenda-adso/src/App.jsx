@@ -33,13 +33,34 @@
 // }
 
 // export default App
-export default function App() {
-   const fecha = new Date().toLocaleString(); 
+// export default function App() {
+//    const fecha = new Date().toLocaleString(); 
 
-   return (
-       <main> 
-        <h1>Hola SENA </h1> 
-        <p>Fecha: {fecha}</p> 
-       </main>
-   );
+//    return (
+//        <main> 
+//         <h1>Hola SENA </h1> 
+//         <p>Fecha: {fecha}</p> 
+//        </main>
+//    );
+// }
+import { useState, useEffect } from "react";
+
+export default function App() {
+  const [fecha, setFecha] = useState(new Date().toLocaleString());
+
+  useEffect(() => {
+    const intervalo = setInterval(() => {
+      setFecha(new Date().toLocaleString());
+    }, 1000);
+
+    return () => clearInterval(intervalo);
+  }, []);
+
+  return (
+    <main>
+      <h1>¡Bienvenid@, soy FABIAN... Aprendiz de ADSO.</h1>
+      <p>{fecha}</p>
+      <p>Espero adquirir los conocimientos necesarios para crear aplicaciones web con ReactJS, aplicando buenas prácticas y entendiendo cómo manejar el estado, los componentes y la interacción del usuario.</p>
+    </main>
+  );
 }
